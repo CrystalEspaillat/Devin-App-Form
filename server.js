@@ -87,6 +87,7 @@ app.post('/send', (req, res) => {
         "refreshToken": GMAIL_AUTH_REFRESH_TOKEN,
         "accessToken": GMAIL_AUTH_ACCESS_TOKEN
     };
+    
 
     var transporter = nodemailer.createTransport({
         service: GMAIL_SERVICE,
