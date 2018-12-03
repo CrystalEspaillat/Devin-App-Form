@@ -100,4 +100,4 @@ app.post('/send', (req, res) => {
         .catch(err => console.log(`Problem sending email: ${err}`));
   }
 
-app.listen(3000, () => console.log('Server started...'));
+app.listen(process.env.PORT || 5000, () => console.log('Server started...'));
