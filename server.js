@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 
 app.post('/send', (req, res) => {
   const output = `
-    <h3>Contact Details</h3>
+    <h3>Contact Details:</h3>
     <ul>  
       <li>Name: ${req.body.name}</li>
       <li>Email: ${req.body.email}</li>
@@ -46,7 +46,7 @@ app.post('/send', (req, res) => {
     port: 465,
     secure: true,
     auth: {
-        type: 'service_account',
+        type: '102045497515235793319',
         user: process.env.GMAIL_AUTH_USER,
         clientId: process.env.GMAIL_AUTH_CLIENT_ID,
         clientSecret: process.env.GMAIL_AUTH_CLIENT_SECRET,
