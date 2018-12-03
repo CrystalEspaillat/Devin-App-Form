@@ -46,7 +46,7 @@ app.post('/send', (req, res) => {
     port: 465,
     secure: true,
     auth: {
-        type: '102045497515235793319',
+        type: 'OAuth2',
         user: process.env.GMAIL_AUTH_USER,
         clientId: process.env.GMAIL_AUTH_CLIENT_ID,
         clientSecret: process.env.GMAIL_AUTH_CLIENT_SECRET,
