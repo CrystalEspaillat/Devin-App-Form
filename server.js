@@ -58,8 +58,8 @@ app.post('/send', (req, res) => {
 
   // setup email data with unicode symbols
   var mailOptions = {
-      from: '"Landing Page" <devin@devinphysique.coach>', // sender address
-      to: 'devin@devinphysique.coach', // list of receivers
+      from: '"Landing Page" <devinphysiqueonline@gmail.com>', // sender address
+      to: 'devinphysiqueonline@gmail.com', // list of receivers
       subject: 'New Client Application from Lead Page', // Subject line
       text: 'Someone applied for coaching with Devin. See details below.', // plain text body
       html: output // html body
