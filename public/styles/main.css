@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body, html {
+    background: #000;
+    font-family: "Open Sans";
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    font-family: "Open Sans";
+    padding: 15px;
+}
+
+.hero {
+    background-image: url("../img/hero.png");
+    background-color: #333;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    filter: grayscale(50%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height:40vh;
+    padding-bottom: 75px;
+}
+
+.logo {
+    width: 150px;
+}
+
+.content {
+    color: white;
+    text-align: center;
+}
+
+/* ///////////////////////////// */
+/* BUTTONS */
+
+.button-box {
+    padding: 10px 0;
+    text-align: center;
+}
+
+button {
+    display: inline-block;
+    width: 80%;
+    margin-top: 1.2em;
+    padding: 1em;
+    max-width: 220px;
+    font-size: .9em;
+    background-color: #c6242b;
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: .15em;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    transition: 
+        color 0.6s, 
+        box-shadow 0.3s, 
+        transform 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    color: white;  
+}
+
+.footer {
+    color: white;
+    font-size: 10pt;
+    background-color: #333;
+    width: 100%;
+
+}
+
+.footer a:link,
+.footer a:active,
+.footer a:visited {
+    color: #c6242b;
+    text-decoration: none;
+    cursor: pointer;
+}

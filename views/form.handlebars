@@ -1,0 +1,124 @@
+  <div class="container">
+
+    <header class="header">
+      <img class="logo" src="/public/img/logo.png" />
+    </header>
+
+    <div class="hero">
+      <h1> Online Coaching Application</h1>
+      <br>
+    </div>
+
+    <div class="form">
+      <form method="POST" action="/send">
+        <p><strong>Answer a few basic questions about yourself and I'll get back to you within 48 hours.</p></strong>
+
+          <br>
+
+        <div class="question">      
+          <p><strong>Full Name:</strong></p>
+          <input class="form-inputs" placeholder="Name" id="name" />
+        </div>
+
+        <div class="question">
+          <p><strong>Email Address:</strong></p>
+          <input class="form-inputs" placeholder="Email" id="email" />
+        </div>
+
+        <div class="question">
+          <p><strong>Which plan are you interested in?</strong></p>
+          <div class="select">
+          <select class="select" id="plan">
+            <option value="Not sure">Not sure, I need help.</option>
+            <option value="6 Week">6 Week Online Coaching</option>
+            <option value="8 Week">8 Week Online Coaching</option>
+            <option value="12 Week">12 Week Online Coaching</option>
+            <option value="16 Week">16 Week Online Coaching</option>
+          </select>
+          </div>
+        </div>
+
+        <div class="question">
+            <p><strong>What is your age range?</strong></p>
+            <label class="option">17 or younger
+              <input type="radio" name="age" value="17 or younger">
+              <span class="checkmark"></span>
+            </label>
+            
+            <label class="option">18-35
+              <input type="radio" name="age" value="18-35">
+              <span class="checkmark"></span>
+            </label>
+            
+            <label class="option">36 or older
+                <input type="radio"  name="age" value="36 or older">
+                <span class="checkmark"></span>
+              </label>
+          </div>
+
+          <div class="question">
+              <p><strong>How often do you exercise?</strong></p>
+              <label class="option">I don't exercise.
+                <input type="radio"  name="exercise" value="no exercise">
+                <span class="checkmark"></span>
+              </label>
+              
+              <label class="option">1-3 times per week
+                <input type="radio" name="exercise" value="1-3x weekly">
+                <span class="checkmark"></span>
+              </label>
+              
+              <label class="option">4+ times per week
+                <input type="radio" name="exercise" value="4+ weekly">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+
+          <div class="question">
+            <p><strong>What is your biggest struggle with diet & exercise?</strong></p>
+            <textarea id="struggle"></textarea>
+          </div>
+
+          <div class="question">
+            <p><strong>On a scale of 1 to 5, how ready are you to start reaching your goals right now?</strong></p>
+            <div class="rb">
+              <div class="rb-tab" data-value="1" name="rating">
+                <div class="rb-spot">
+                  <span class="rb-txt">1</span>
+                </div>
+              </div><div class="rb-tab" data-value="2" name="rating">
+                <div class="rb-spot">
+                  <span class="rb-txt">2</span>
+                </div>
+              </div><div class="rb-tab" data-value="3" name="rating">
+                <div class="rb-spot">
+                  <span class="rb-txt">3</span>
+                </div>
+              </div><div class="rb-tab" data-value="4" name="rating">
+                <div class="rb-spot">
+                  <span class="rb-txt">4</span>
+                </div>
+              </div><div class="rb-tab rb-tab-active" data-value="5" name="rating">
+                <div class="rb-spot">
+                  <span class="rb-txt">5</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="button-box">
+                <button class="button submit" type="submit">Apply Now</button>
+          </div>
+
+        </form>
+    </div>
+  </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2018 Devin Physique | <a href="https://www.devinphysique.coach/contact">Contact</a> | <a href="https://www.devinphysique.coach/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+  <script src="/public/js/form.js"></script>
+
+
