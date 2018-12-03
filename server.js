@@ -57,7 +57,7 @@ app.post('/send', (req, res) => {
 });
 
   // setup email data with unicode symbols
-  let mailOptions = {
+  var mailOptions = {
       from: '"Landing Page" <devin@devinphysique.coach>', // sender address
       to: 'devin@devinphysique.coach', // list of receivers
       subject: 'New Client Application from Lead Page', // Subject line
@@ -79,7 +79,7 @@ app.post('/send', (req, res) => {
 
   sendEmail = (emailData) => {
 
-    let auth = {
+    var auth = {
         "type": GMAIL_AUTH_TYPE,
         "user": GMAIL_AUTH_USER,
         "clientId": GMAIL_AUTH_CLIENT_ID,
@@ -88,7 +88,7 @@ app.post('/send', (req, res) => {
         "accessToken": GMAIL_AUTH_ACCESS_TOKEN
     };
 
-    const transporter = nodemailer.createTransport({
+    var transporter = nodemailer.createTransport({
         service: GMAIL_SERVICE,
         auth
     });
