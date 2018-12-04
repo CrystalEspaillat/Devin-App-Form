@@ -50,6 +50,9 @@ app.post('/send', (req, res) => {
 
     var smtpTransport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
+        host: 'smtp.example.com',
+        port: 587,
+        secure: false, // upgrade later with STARTTLS
         auth: {
             user: "devinphysiqueonline@gmail.com",
             pass: "d3dicated"
