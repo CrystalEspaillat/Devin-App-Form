@@ -35,6 +35,7 @@ res.render('privacy');
 });
 
 app.post('/send', (req, res) => {
+
   const output = `
     <h3>Contact Details:</h3>
     <ul>  
@@ -52,7 +53,7 @@ app.post('/send', (req, res) => {
     var smtpTransport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
         host: 'smtp.example.com',
-        port: 587,
+        port: 465,
         secure: false, // upgrade later with STARTTLS
         auth: {
             user: "devinphysiqueonline@gmail.com",
