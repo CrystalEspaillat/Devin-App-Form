@@ -17,12 +17,12 @@
 
         <div class="question">      
           <p><strong>Full Name:</strong></p>
-          <input class="form-inputs" placeholder="Name" id="name" />
+          <input class="form-inputs" maxLength="75" placeholder="Name" id="name" required/>
         </div>
 
         <div class="question">
           <p><strong>Email Address:</strong></p>
-          <input class="form-inputs" placeholder="Email" id="email" />
+          <input class="form-inputs" maxLength="75" placeholder="Email" type="email" id="email" required/>
         </div>
 
         <div class="question">
@@ -46,7 +46,7 @@
             </label>
             
             <label class="option">18-35
-              <input type="radio" name="age" value="18-35">
+              <input type="radio" name="age" value="18-35" checked>
               <span class="checkmark"></span>
             </label>
             
@@ -59,7 +59,7 @@
           <div class="question">
               <p><strong>How often do you exercise?</strong></p>
               <label class="option">I don't exercise.
-                <input type="radio"  name="exercise" value="no exercise">
+                <input type="radio"  name="exercise" value="no exercise" checked>
                 <span class="checkmark"></span>
               </label>
               
@@ -115,7 +115,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p>&copy; 2018 Devin Physique | <a href="https://www.devinphysique.coach/contact">Contact</a> | <a href="https://www.devinphysique.coach/privacy">Privacy</a></p>
+        <p>&copy; 2018 Devin Physique | <a href="https://www.devinphysique.coach/contact">Contact</a> | <a href="/privacy">Privacy</a></p>
       </div>
     </footer>
 

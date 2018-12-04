@@ -25,6 +25,14 @@ app.get('/', (req, res) => {
   res.render('form');
 });
 
+app.get('/thanks', (req, res) => {
+    res.render('thanks');
+  });
+
+app.get('/privacy', (req, res) => {
+res.render('privacy');
+});
+
 app.post('/send', (req, res) => {
   const output = `
     <h3>Contact Details:</h3>
@@ -43,7 +51,7 @@ app.post('/send', (req, res) => {
   // create reusable transporter object using the default SMTP transport
   var transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
+    port: 587,
     secure: true,
     auth: {
         type: 'OAuth2',
@@ -87,7 +95,7 @@ app.post('/send', (req, res) => {
         "refreshToken": GMAIL_AUTH_REFRESH_TOKEN,
         "accessToken": GMAIL_AUTH_ACCESS_TOKEN
     };
-    
+
 
     var transporter = nodemailer.createTransport({
         service: GMAIL_SERVICE,
