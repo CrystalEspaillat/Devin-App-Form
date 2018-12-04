@@ -21,35 +21,21 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
+// DISPLAY PAGES
 app.get('/', (req, res) => {
-  res.render('form');
+    res.render('form');
 });
-
 app.get('/thanks', (req, res) => {
     res.render('thanks');
   });
-
 app.get('/privacy', (req, res) => {
-res.render('privacy');
+    res.render('privacy');
 });
 
+// FORM SUBMIT
 app.post('/send', (req, res) => {
 
-  const output = `
-    <h3>Contact Details:</h3>
-    <ul>  
-      <li>Name: ${req.body.name}</li>
-      <li>Email: ${req.body.email}</li>
-      <li>Preferred Plan: ${req.body.plan}</li>
-      <li>Age Range: ${req.body.age}</li>
-      <li>Current Exercise Habit: ${req.body.exercise}</li>
-      <li>Readiness (1-5): ${req.body.rating}</li>
-    </ul>
-    <h3>Biggest Struggle:</h3>
-    <p>${req.body.struggle}</p>
-  `;
-
+    // use nodemailer
     var smtpTransport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
         host: 'smtp.example.com',
@@ -61,6 +47,22 @@ app.post('/send', (req, res) => {
         }
     });
 
+    // create a body for the email
+    const output = `
+        <h3>Contact Details:</h3>
+        <ul>  
+            <li>Name: ${req.body.name}</li>
+            <li>Email: ${req.body.email}</li>
+            <li>Preferred Plan: ${req.body.plan}</li>
+            <li>Age Range: ${req.body.age}</li>
+            <li>Current Exercise Habit: ${req.body.exercise}</li>
+            <li>Readiness (1-5): ${req.body.rating}</li>
+        </ul>
+        <h3>Biggest Struggle:</h3>
+        <p>${req.body.struggle}</p>
+    `;
+
+    // create email
     var mailOptions = {
         from: "devinphysiqueonline@gmail.com",
         to: "devinphysiqueonline@gmail.com",
@@ -69,18 +71,20 @@ app.post('/send', (req, res) => {
         html: output
     }
 
+    // send the mail
     smtpTransport.sendMail(mailOptions, function(error, response) {
         if (error) {
             console.log(error);
         } else {
             console.log("Message sent: " + response.message);
         }
-
         // if you don't want to use this transport object anymore, uncomment following line
         smtpTransport.close(); // shut down the connection pool, no more messages
-
         callback();
     });
+
+    res.render('thanks');
+
 });
 
 // /////////////////////////////////////////////
