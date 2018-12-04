@@ -100,8 +100,8 @@ app.post('/send', (req, res) => {
 
     var transporter = nodemailer.createTransport({
         service: GMAIL_SERVICE,
-        connectionTimeout : "7000",
-        greetingTimeout : "7000",
+        // connectionTimeout : "7000",
+        // greetingTimeout : "7000",
         auth
     });
 
