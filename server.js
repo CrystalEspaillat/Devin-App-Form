@@ -54,7 +54,7 @@ app.post('/send', (req, res) => {
         service: "Gmail",
         host: 'smtp.example.com',
         port: 465,
-        secure: false, // upgrade later with STARTTLS
+        secure: true,
         auth: {
             user: "devinphysiqueonline@gmail.com",
             pass: "d3dicat3d"
