@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const nodemailer = require('nodemailer');
+const smtpTransport = require('nodemailer-smtp-transport');
 require('dotenv');
 
 const app = express();
