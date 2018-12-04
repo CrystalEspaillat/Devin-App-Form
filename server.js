@@ -56,7 +56,7 @@ app.post('/send', (req, res) => {
         secure: false, // upgrade later with STARTTLS
         auth: {
             user: "devinphysiqueonline@gmail.com",
-            pass: "d3dicated"
+            pass: "d3dicat3d"
         }
     });
 
