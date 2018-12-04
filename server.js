@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const nodemailer = require('nodemailer');
-const smtpTransport = require('nodemailer-smtp-transport');
 require('dotenv');
 
 const app = express();
@@ -38,7 +37,7 @@ app.post('/send', (req, res) => {
     // use nodemailer
     var smtpTransport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
-        host: 'smtp.example.com',
+        host: 'smtp.gmail.com',
         port: 465,
         secure: true,
         auth: {
