@@ -53,6 +53,7 @@ app.post('/send', (req, res) => {
     host: 'smtp.gmail.com',
     port: 587,
     secure: true,
+    
     auth: {
         type: 'OAuth2',
         user: process.env.GMAIL_AUTH_USER,
@@ -99,6 +100,8 @@ app.post('/send', (req, res) => {
 
     var transporter = nodemailer.createTransport({
         service: GMAIL_SERVICE,
+        connectionTimeout : "7000",
+        greetingTimeout : "7000",
         auth
     });
 
