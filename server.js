@@ -48,68 +48,100 @@ app.post('/send', (req, res) => {
     <p>${req.body.struggle}</p>
   `;
 
-  // create reusable transporter object using the default SMTP transport
-  var transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    
-    auth: {
-        type: 'OAuth2',
-        user: process.env.GMAIL_AUTH_USER,
-        clientId: process.env.GMAIL_AUTH_CLIENT_ID,
-        clientSecret: process.env.GMAIL_AUTH_CLIENT_SECRET,
-        refreshToken: process.env.GMAIL_AUTH_REFRESH_TOKEN,
-        accessToken: process.env.GMAIL_AUTH_ACCESS_TOKEN,
-        expires: 1484314697598
-    }
-});
-
-  // setup email data with unicode symbols
-  var mailOptions = {
-      from: '"Landing Page" <devinphysiqueonline@gmail.com>', // sender address
-      to: 'devinphysiqueonline@gmail.com', // list of receivers
-      subject: 'New Client Application from Lead Page', // Subject line
-      text: 'Someone applied for coaching with Devin. See details below.', // plain text body
-      html: output // html body
-  };
-
-  // send mail with defined transport object
-  transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-          return console.log(error);
-      }
-      console.log('Message sent: %s', info.messageId);   
-      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
-      res.render('thanks');
-  });
-  });
-
-  sendEmail = (emailData) => {
-
-    var auth = {
-        "type": GMAIL_AUTH_TYPE,
-        "user": GMAIL_AUTH_USER,
-        "clientId": GMAIL_AUTH_CLIENT_ID,
-        "clientSecret": GMAIL_AUTH_CLIENT_SECRET,
-        "refreshToken": GMAIL_AUTH_REFRESH_TOKEN,
-        "accessToken": GMAIL_AUTH_ACCESS_TOKEN
-    };
-
-
     var smtpTransport = nodemailer.createTransport("SMTP", {
-        service: GMAIL_SERVICE,
-        // connectionTimeout : "7000",
-        // greetingTimeout : "7000",
-        auth
+        service: "Gmail",
+        auth: {
+            user: "devinphysiqueonline@gmail.com",
+            pass: "d3dicated"
+        }
     });
 
-    logger.info(`Attempting to send email from ${emailData.from}`);
-    transporter
-        .sendMail(emailData)
-        .then(info => console.log(`Email sent: ${info.response}`))
-        .catch(err => console.log(`Problem sending email: ${err}`));
-  }
+    var mailOptions = {
+        from: "devinphysiqueonline@gmail.com",
+        to: "devinphysiqueonline@gmail.com",
+        subject: 'New Client Application!',
+        text: 'You have a new Client Application to review!',
+        html: output
+    }
+
+    smtpTransport.sendMail(mailOptions, function(error, response) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("Message sent: " + response.message);
+        }
+
+        // if you don't want to use this transport object anymore, uncomment following line
+        smtpTransport.close(); // shut down the connection pool, no more messages
+
+        callback();
+    });
+});
+
+// /////////////////////////////////////////////
+
+//   // create reusable transporter object using the default SMTP transport
+//   var transporter = nodemailer.createTransport({
+//     host: 'smtp.gmail.com',
+//     port: 465,
+//     secure: true,
+    
+//     auth: {
+//         type: 'OAuth2',
+//         user: process.env.GMAIL_AUTH_USER,
+//         clientId: process.env.GMAIL_AUTH_CLIENT_ID,
+//         clientSecret: process.env.GMAIL_AUTH_CLIENT_SECRET,
+//         refreshToken: process.env.GMAIL_AUTH_REFRESH_TOKEN,
+//         accessToken: process.env.GMAIL_AUTH_ACCESS_TOKEN,
+//         expires: 1484314697598
+//     }
+// });
+
+//   // setup email data with unicode symbols
+//   var mailOptions = {
+//       from: '"Landing Page" <devinphysiqueonline@gmail.com>', // sender address
+//       to: 'devinphysiqueonline@gmail.com', // list of receivers
+//       subject: 'New Client Application from Lead Page', // Subject line
+//       text: 'Someone applied for coaching with Devin. See details below.', // plain text body
+//       html: output // html body
+//   };
+
+//   // send mail with defined transport object
+//   transporter.sendMail(mailOptions, (error, info) => {
+//       if (error) {
+//           return console.log(error);
+//       }
+//       console.log('Message sent: %s', info.messageId);   
+//       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+//       res.render('thanks');
+//   });
+//   });
+
+//   sendEmail = (emailData) => {
+
+//     var auth = {
+//         "type": GMAIL_AUTH_TYPE,
+//         "user": GMAIL_AUTH_USER,
+//         "clientId": GMAIL_AUTH_CLIENT_ID,
+//         "clientSecret": GMAIL_AUTH_CLIENT_SECRET,
+//         "refreshToken": GMAIL_AUTH_REFRESH_TOKEN,
+//         "accessToken": GMAIL_AUTH_ACCESS_TOKEN
+//     };
+
+
+//     var smtpTransport = nodemailer.createTransport("SMTP", {
+//         service: GMAIL_SERVICE,
+//         // connectionTimeout : "7000",
+//         // greetingTimeout : "7000",
+//         auth
+//     });
+
+//     logger.info(`Attempting to send email from ${emailData.from}`);
+//     transporter
+//         .sendMail(emailData)
+//         .then(info => console.log(`Email sent: ${info.response}`))
+//         .catch(err => console.log(`Problem sending email: ${err}`));
+//   }
 
 app.listen(process.env.PORT || 5000, () => console.log('Server started...'));
