@@ -49,12 +49,12 @@ app.post('/send', (req, res) => {
     const output = `
         <h3>Contact Details:</h3>
         <ul>  
-            <li>Name: ${req.body.clientname}</li>
-            <li>Email: ${req.body.email}</li>
-            <li>Preferred Plan: ${req.body.plan}</li>
-            <li>Age Range: ${req.body.age}</li>
-            <li>Current Exercise Habit: ${req.body.exercise}</li>
-            <li>Readiness (1-5): ${req.body.rating}</li>
+            <li><strong>Name:</strong> ${req.body.fullname}</li>
+            <li><strong>Email:</strong> ${req.body.email}</li>
+            <li><strong>Preferred Plan:</strong> ${req.body.plan}</li>
+            <li><strong>Age Range:</strong> ${req.body.age}</li>
+            <li><strong>Current Exercise Habit:</strong> ${req.body.exercise}</li>
+            <li><strong>Readiness (1-5):</strong> ${req.body.rating}</li>
         </ul>
         <h3>Biggest Struggle:</h3>
         <p>${req.body.struggle}</p>

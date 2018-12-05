@@ -1,4 +1,4 @@
-let rating = [];
+let rating= 0;
 
 $(".submit").on("click", (event) => {
 
@@ -6,7 +6,7 @@ $(".submit").on("click", (event) => {
   event.preventDefault();
 
   // Collect form values
-    let name = $("#clientname").val().trim();
+    let name = $("#full-name").val().trim();
     let email = $("#email").val().trim();
     let plan = $("#plan").val();
 
@@ -25,10 +25,9 @@ $(".submit").on("click", (event) => {
   //   };
 
   // Save rating radio value:
-    rating = [];
     for (i=1; i<=$(".rb").length; i++) {
         let rbValue = $(".rb-tab-active").attr("data-value");
-        rating.push(rbValue);
+        rating = parseInt(rbValue);
       };
 
   // Test
@@ -41,7 +40,7 @@ $(".submit").on("click", (event) => {
     console.log("their rating is: " + rating);
 
     let newApplication = {
-      customerName: name,
+        fullname: name,
         email: email,
         plan: plan,
         age: age,
@@ -51,7 +50,7 @@ $(".submit").on("click", (event) => {
     }
 
     $.post("/send", newApplication, (data) => {
-      console.log(data);
+      console.log(newApplication);
     }); 
 
 });
