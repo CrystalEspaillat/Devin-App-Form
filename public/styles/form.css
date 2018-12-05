@@ -40,6 +40,7 @@ input:focus {
     border-radius: 5px;
 }
 select {
+    -webkit-appearance: none;
     background: rgb(53, 51, 51);
     border: none;
     font-size: 12pt;
