@@ -23,9 +23,9 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
     res.render('form');
 });
-app.get('/thanks', (req, res) => {
-    res.render('thanks');
-  });
+// app.get('/thanks', (req, res) => {
+//     res.render('thanks');
+//   });
 app.get('/privacy', (req, res) => {
     res.render('privacy');
 });
