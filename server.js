@@ -35,7 +35,7 @@ app.get('/privacy', (req, res) => {
 app.post('/send', (req, res) => {
 
     // use nodemailer
-    var smtpTransport = nodeMailer.createTransport("SMTP", {
+    var smtpTransport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
         host: 'smtp.gmail.com',
         port: 465,
@@ -79,7 +79,6 @@ app.post('/send', (req, res) => {
         }
         // if you don't want to use this transport object anymore, uncomment following line
         smtpTransport.close(); // shut down the connection pool, no more messages
-        callback();
     });
 
     res.render('thanks');
