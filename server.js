@@ -35,7 +35,7 @@ app.get('/privacy', (req, res) => {
 app.post('/send', (req, res) => {
 
     // use nodemailer
-    var smtpTransport = nodemailer.createTransport("SMTP", {
+    var smtpTransport = nodemailer.createTransport( {
         service: "Gmail",
         host: 'smtp.gmail.com',
         port: 465,
