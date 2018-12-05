@@ -33,7 +33,7 @@ input:focus {
 /* SELECT FIELD */
 
 .select {
-    padding: 10px 2px;
+    padding: 0px;
     background: rgb(53, 51, 51);
     width: 100%;
     margin: 0px;
@@ -46,7 +46,6 @@ select {
     font-size: 12pt;
     padding: 10px;
     width: 100%;
-    height: 25px;
     color: white;
     border-radius: 5px;
 }
