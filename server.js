@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const nodemailer = require('nodemailer');
-require('dotenv');
+require('dotenv').load();
 const app = express();
 
 // VIEW ENGINE
