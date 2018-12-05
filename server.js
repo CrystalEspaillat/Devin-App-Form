@@ -4,7 +4,6 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const nodemailer = require('nodemailer');
 require('dotenv');
-
 const app = express();
 
 // VIEW ENGINE
@@ -41,8 +40,8 @@ app.post('/send', (req, res) => {
         port: 465,
         secure: true,
         auth: {
-            user: "devinphysiqueonline@gmail.com",
-            pass: "d3dicat3d"
+            user: process.env.USEREMAIL,
+            pass: process.env.USERPASSWORD
         }
     });
 
@@ -50,7 +49,7 @@ app.post('/send', (req, res) => {
     const output = `
         <h3>Contact Details:</h3>
         <ul>  
-            <li>Name: ${req.body.name}</li>
+            <li>Name: ${req.body.clientname}</li>
             <li>Email: ${req.body.email}</li>
             <li>Preferred Plan: ${req.body.plan}</li>
             <li>Age Range: ${req.body.age}</li>
@@ -63,8 +62,8 @@ app.post('/send', (req, res) => {
 
     // create email
     var mailOptions = {
-        from: "devinphysiqueonline@gmail.com",
-        to: "devinphysiqueonline@gmail.com",
+        from: process.env.EMAIL,
+        to: process.env.EMAIL,
         subject: 'New Client Application!',
         text: 'You have a new Client Application to review!',
         html: output

@@ -6,7 +6,7 @@ $(".submit").on("click", (event) => {
   event.preventDefault();
 
   // Collect form values
-    let name = $("#name").val().trim();
+    let name = $("#clientname").val().trim();
     let email = $("#email").val().trim();
     let plan = $("#plan").val();
 
