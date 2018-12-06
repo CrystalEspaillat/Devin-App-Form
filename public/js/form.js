@@ -50,8 +50,7 @@ $("form").parsley().on("form:submit", () => {
 
     $.post("/send", newApplication, data => {
       console.log(newApplication);
+      window.location.replace('../thanks');
     }); 
-
-    // return false; // avoid submitting when form isnt correct
-
+    
 });

@@ -6,11 +6,11 @@ const nodemailer = require('nodemailer');
 require('dotenv').load();
 const app = express();
 
+
 // VIEW ENGINE
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
-console.log(path.join(__dirname, 'views'));
 
 // SERVE STATIC FILES
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -23,9 +23,12 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
     res.render('form');
 });
+
 app.get('/thanks', (req, res) => {
     res.render('thanks');
-  });
+    console.log('i\'m here!');
+});
+
 app.get('/privacy', (req, res) => {
     res.render('privacy');
 });
@@ -76,15 +79,18 @@ app.post('/send', (req, res) => {
         if (error) {
             console.log(error);
         } else {
-            console.log("Message sent: " + response.message);
+            console.log("Message sent: " + response);
+            //res.redirect('/thanks');
         }
 
-        // if you don't want to use this transport object anymore, uncomment following line
         smtpTransport.close(); // shut down the connection pool, no more messages
 
-        res.render('thanks');
-
     });
+    
+    res.redirect('../thanks');
+
+     //res.send('thanks');
+
 
 });
 
