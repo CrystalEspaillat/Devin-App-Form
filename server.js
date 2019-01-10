@@ -52,9 +52,6 @@ app.post('/send', (req, res) => {
             <li><strong>Name:</strong> ${req.body.fullname}</li>
             <li><strong>Email:</strong> ${req.body.email}</li>
             <li><strong>Preferred Plan:</strong> ${req.body.plan}</li>
-            <li><strong>Age Range:</strong> ${req.body.age}</li>
-            <li><strong>Current Exercise Habit:</strong> ${req.body.exercise}</li>
-            <li><strong>Readiness (1-5):</strong> ${req.body.rating}</li>
         </ul>
         <h3>Biggest Struggle:</h3>
         <p>${req.body.struggle}</p>
@@ -77,15 +74,11 @@ app.post('/send', (req, res) => {
             console.log(error);
         } else {
             console.log("Message sent: " + response);
-            //res.redirect('/thanks');
         }
 
         smtpTransport.close(); // shut down the connection pool, no more messages
 
     });
-    
-    // Show thank you page
-    res.redirect('../thanks');
 
 });
 

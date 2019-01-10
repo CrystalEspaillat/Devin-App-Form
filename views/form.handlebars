@@ -10,100 +10,54 @@
     </div>
 
     <div class="form">
-      <form role="form" method="POST" action="/send" data-parsley-validate>
-        <p><strong>Answer a few basic questions about yourself and I'll get back to you within 48 hours.</p></strong>
 
-          <br>
+      <form role="form" method="POST" action="/send" data-parsley-validate>
+
+        <p><strong>Answer a few basic questions about yourself and I'll get back to you within 48 hours.</p></strong>
 
         <div class="question">      
           <p><strong>Full Name:</strong></p>
-          <input class="form-inputs" maxLength="75" placeholder="Name" type="text" id="full-name" name="full-name" data-parsley-required-message="Your name was missing." required />
+          <input class="form-inputs" maxLength="75" placeholder="Name" type="text" id="full-name" name="full-name" data-parsley-required-message="Please enter your name." required />
         </div>
 
         <div class="question">
           <p><strong>Email Address:</strong></p>
-          <input class="form-inputs" maxLength="75" placeholder="Email" type="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="75" data-parsley-required-message="Your email was missing." required />
+          <input class="form-inputs" maxLength="75" placeholder="Email" type="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="75" data-parsley-required-message="Please enter your email address." required />
         </div>
-
-        <div class="question">
-          <p><strong>Which plan are you interested in?</strong></p>
-          <div class="select">
-          <select class="select" id="plan">
-            <option value="Not sure">Not sure, I need help.</option>
-            <option value="6 Week">4 Week Online Coaching</option>
-            <option value="8 Week">8 Week Online Coaching</option>
-            <option value="12 Week">12 Week Online Coaching</option>
-            <option value="16 Week">16 Week Online Coaching</option>
-          </select>
-          </div>
-        </div>
-
-        <div class="question">
-            <p><strong>What is your age range?</strong></p>
-            <label class="option">17 or younger
-              <input type="radio" name="age" value="17 or younger">
-              <span class="checkmark"></span>
-            </label>
-            
-            <label class="option">18-35
-              <input type="radio" name="age" value="18-35" checked>
-              <span class="checkmark"></span>
-            </label>
-            
-            <label class="option">36 or older
-                <input type="radio"  name="age" value="36 or older">
-                <span class="checkmark"></span>
-              </label>
-          </div>
 
           <div class="question">
-              <p><strong>How often do you exercise?</strong></p>
-              <label class="option">I don't exercise.
-                <input type="radio"  name="exercise" value="no exercise" checked>
+              <p><strong>What plan are you interested in?</strong></p>
+              <label class="option">I don't know.
+                <input type="radio"  name="plan" value="don't know" checked>
                 <span class="checkmark"></span>
               </label>
               
-              <label class="option">1-3 times per week
-                <input type="radio" name="exercise" value="1-3x weekly">
+              <label class="option">4 Weeks
+                <input type="radio" name="plan" value="4 weeks">
                 <span class="checkmark"></span>
               </label>
               
-              <label class="option">4+ times per week
-                <input type="radio" name="exercise" value="4+ weekly">
+              <label class="option">8 Weeks
+                <input type="radio" name="plan" value="8 weeks">
                 <span class="checkmark"></span>
               </label>
+
+              <label class="option">12 Weeks
+                <input type="radio" name="plan" value="12 weeks">
+                <span class="checkmark"></span>
+              </label>
+
+              <label class="option">16 Weeks
+                <input type="radio" name="plan" value="16 weeks">
+                <span class="checkmark"></span>
+              </label>
+
             </div>
 
           <div class="question">
             <p><strong>What is your biggest struggle with diet & exercise?</strong></p>
-            <textarea id="struggle" data-parsley-required-message="Your biggest struggle was missing." required></textarea>
+            <textarea id="struggle" data-parsley-required-message="Please tell me about your bigges struggle." required></textarea>
           </div>
-
-          <div class="question">
-            <p><strong>On a scale of 1 to 5, how ready are you to start reaching your goals right now?</strong></p>
-            <div class="rb">
-              <div class="rb-tab" data-value="1" name="rating">
-                <div class="rb-spot">
-                  <span class="rb-txt">1</span>
-                </div>
-              </div><div class="rb-tab" data-value="2" name="rating">
-                <div class="rb-spot">
-                  <span class="rb-txt">2</span>
-                </div>
-              </div><div class="rb-tab" data-value="3" name="rating">
-                <div class="rb-spot">
-                  <span class="rb-txt">3</span>
-                </div>
-              </div><div class="rb-tab" data-value="4" name="rating">
-                <div class="rb-spot">
-                  <span class="rb-txt">4</span>
-                </div>
-              </div><div class="rb-tab rb-tab-active" data-value="5" name="rating">
-                <div class="rb-spot">
-                  <span class="rb-txt">5</span>
-                </div>
-              </div>
-            </div>
 
             <div class="button-box">
                 <button class="button submit" type="submit">Apply Now</button>
@@ -118,7 +72,4 @@
         <p>&copy; 2019 Devin Physique | <a href="/privacy">Privacy</a></p>
       </div>
     </footer>
-
-  <script src="/public/js/form.js"></script>
-
 
