@@ -74,11 +74,15 @@ app.post('/send', (req, res) => {
             console.log(error);
         } else {
             console.log("Message sent: " + response);
+            //res.redirect('/thanks');
         }
 
         smtpTransport.close(); // shut down the connection pool, no more messages
 
     });
+    
+    // Show thank you page
+    res.redirect('../thanks');
 
 });
 
