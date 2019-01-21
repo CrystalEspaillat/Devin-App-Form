@@ -45,6 +45,11 @@ app.post('/send', (req, res) => {
         }
     });
 
+    // create variable for email submitted
+    const replyTo = `${req.body.email}`;
+    const subject = `${req.body.fullname}`
+
+
     // create a body for the email
     const output = `
         <h3>Contact Details:</h3>
@@ -63,8 +68,9 @@ app.post('/send', (req, res) => {
     var mailOptions = {
         from: process.env.USEREMAIL,
         to: process.env.USEREMAIL,
-        subject: 'New Client Application!',
+        subject: 'New Client Application from ' + subject,
         text: 'You have a new Client Application to review!',
+        replyTo: replyTo,
         html: output
     }
 
