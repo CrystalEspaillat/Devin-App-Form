@@ -3,8 +3,10 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const nodemailer = require('nodemailer');
+const superagent = require('superagent');
 require('dotenv').load();
 const app = express();
+
 
 
 // VIEW ENGINE
@@ -30,10 +32,37 @@ app.get('/privacy', (req, res) => {
     res.render('privacy');
 });
 
-// NODEMAILER
+//MAIL CHIMP
+const mailchimpInstance = process.env.MAILCHIMPINST;
+const listUniqueId = process.env.MAILCHIMPLIST;
+const mailchimpApiKey = process.env.MAILCHIMPAPI;
+
+
+// CLICK EVENT
 app.post('/send', (req, res) => {
 
-    // use nodemailer
+    // MAILCHIMP
+    req
+        .post('https://' + mailchimpInstance + '.api.mailchimp.com/3.0/lists/' + listUniqueId + '/members/')
+        .set('Content-Type', 'application/json;charset=utf-8')
+        .set('Authorization', 'Basic ' + new Buffer('any:' + mailchimpApiKey ).toString('base64'))
+        .send({
+          'email_address': req.body.email,
+          'status': 'subscribed',
+          'merge_fields': {
+            'FNAME': req.body.firstName,
+            'LNAME': req.body.lastName
+          }
+        })
+        .end(function(err, response) {
+            if (response.status < 300 || (response.status === 400 && response.body.title === "Member Exists")) {
+            res.send('Signed Up!');
+            } else {
+            res.send('Sign Up Failed :(');
+            }
+        });
+
+    // NODEMAILER
     var smtpTransport = nodemailer.createTransport( {
         service: "Gmail",
         host: 'smtp.gmail.com',
@@ -48,7 +77,6 @@ app.post('/send', (req, res) => {
     // create variable for email submitted
     const replyTo = `${req.body.email}`;
     const subject = `${req.body.firstname}`
-
 
     // create a body for the email
     const output = `
