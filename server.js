@@ -7,8 +7,6 @@ const request = require('superagent');
 require('dotenv').load();
 const app = express();
 
-
-
 // VIEW ENGINE
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set('view engine', 'handlebars');
@@ -50,15 +48,15 @@ app.post('/send', (req, res) => {
           'email_address': req.body.email,
           'status': 'subscribed',
           'merge_fields': {
-            'FNAME': req.body.firstName,
-            'LNAME': req.body.lastName
+            'FNAME': req.body.firstname,
+            'LNAME': req.body.lastname
           }
         })
         .end(function(err, response) {
             if (response.status < 300 || (response.status === 400 && response.body.title === "Member Exists")) {
-            res.send('Signed Up!');
+            console.log('Signed Up!');
             } else {
-            res.send('Sign Up Failed :(');
+            console.log('Sign Up Failed :(');
             }
         });
 
