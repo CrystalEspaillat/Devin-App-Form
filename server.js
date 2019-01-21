@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const nodemailer = require('nodemailer');
-const superagent = require('superagent');
+const request = require('superagent');
 require('dotenv').load();
 const app = express();
 
@@ -42,7 +42,7 @@ const mailchimpApiKey = process.env.MAILCHIMPAPI;
 app.post('/send', (req, res) => {
 
     // MAILCHIMP
-    req
+    request
         .post('https://' + mailchimpInstance + '.api.mailchimp.com/3.0/lists/' + listUniqueId + '/members/')
         .set('Content-Type', 'application/json;charset=utf-8')
         .set('Authorization', 'Basic ' + new Buffer('any:' + mailchimpApiKey ).toString('base64'))
