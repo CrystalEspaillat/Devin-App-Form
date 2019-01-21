@@ -47,14 +47,14 @@ app.post('/send', (req, res) => {
 
     // create variable for email submitted
     const replyTo = `${req.body.email}`;
-    const subject = `${req.body.fullname}`
+    const subject = `${req.body.firstname}`
 
 
     // create a body for the email
     const output = `
         <h3>Contact Details:</h3>
         <ul>  
-            <li><strong>Name:</strong> ${req.body.fullname}</li>
+            <li><strong>Name:</strong> ${req.body.firstname} ${req.body.lastname}</li>
             <li><strong>Email:</strong> ${req.body.email}</li>
             <li><strong>Preferred Plan:</strong> ${req.body.plan}</li>
         </ul>

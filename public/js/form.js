@@ -12,19 +12,21 @@ $(document).ready(function() {
     $(".alert").show();
 
     // Collect form values
-    let name = $("#full-name").val().trim();
+    let firstName = $("#first-name").val().trim();
+    let lastName = $("#last-name").val().trim();
     let email = $("#email").val().trim();
     let plan =  $('input[name="plan"]:checked').val();
     let struggle = $('textarea#struggle').val();
 
     // Test
-      console.log("name is: " + name);
+      console.log("name is: " + firstName + " " + lastName);
       console.log("email is: " + email);
       console.log("plan is: " + plan);
       console.log("struggle is: " + struggle);
 
       let newApplication = {
-          fullname: name,
+          firstname: firstName,
+          lastname: lastName,
           email: email,
           plan: plan,
           struggle: struggle
