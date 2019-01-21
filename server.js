@@ -61,7 +61,6 @@ app.post('/send', (req, res) => {
         <h3>Biggest Struggle:</h3>
         <p>${req.body.struggle}</p>
         <hr>
-        <p> This email came from https://devinphysique-clientapp.herokuapp.com/ </p>
     `;
 
     // create email
