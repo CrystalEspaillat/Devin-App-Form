@@ -66,7 +66,7 @@ app.post('/send', (req, res) => {
 
     // create email
     var mailOptions = {
-        from: process.env.USEREMAIL,
+        from: replyTo,
         to: process.env.USEREMAIL,
         replyTo: replyTo,
         subject: 'New Client Application from ' + subject,
