@@ -38,30 +38,13 @@ const mailchimpApiKey = process.env.MAILCHIMPAPI;
 
 // CLICK EVENT
 app.post('/send', (req, res) => {
-
-    // MAILCHIMP
-    request
-        .post('https://' + mailchimpInstance + '.api.mailchimp.com/3.0/lists/' + listUniqueId + '/members/')
-        .set('Content-Type', 'application/json;charset=utf-8')
-        .set('Authorization', 'Basic ' + new Buffer('any:' + mailchimpApiKey ).toString('base64'))
-        .send({
-          'email_address': req.body.email,
-          'status': 'subscribed',
-          'merge_fields': {
-            'FNAME': req.body.firstname,
-            'LNAME': req.body.lastname
-          }
-        })
-        .end(function(err, response) {
-            if (response.status < 300 || (response.status === 400 && response.body.title === "Member Exists")) {
-            console.log('Signed Up!');
-            } else {
-            console.log('Sign Up Failed :(');
-            }
-        });
+   // create variables for form values
+   const replyTo = `${req.body.email}`;
+   const subject = `${req.body.firstname}`;
+   const marketing = `${req.body.marketing}`;
 
     // NODEMAILER
-    var smtpTransport = nodemailer.createTransport( {
+    const smtpTransport = nodemailer.createTransport( {
         service: "Gmail",
         host: 'smtp.gmail.com',
         port: 465,
@@ -72,10 +55,6 @@ app.post('/send', (req, res) => {
         }
     });
 
-    // create variable for email submitted
-    const replyTo = `${req.body.email}`;
-    const subject = `${req.body.firstname}`
-
     // create a body for the email
     const output = `
         <h3>Contact Details:</h3>
@@ -83,6 +62,7 @@ app.post('/send', (req, res) => {
             <li><strong>Name:</strong> ${req.body.firstname} ${req.body.lastname}</li>
             <li><strong>Email:</strong> ${req.body.email}</li>
             <li><strong>Preferred Plan:</strong> ${req.body.plan}</li>
+            <li><strong>Open to Marketing:</strong> ${req.body.marketing}</li>
         </ul>
         <h3>Biggest Struggle:</h3>
         <p>${req.body.struggle}</p>
@@ -90,14 +70,14 @@ app.post('/send', (req, res) => {
     `;
 
     // create email
-    var mailOptions = {
+    const mailOptions = {
         from: process.env.USERSENDS,
         to: process.env.USERGETS,
         replyTo: replyTo,
         subject: 'New Client Application from ' + subject,
         text: 'You have a new Client Application to review!',
         html: output
-    }
+    };
 
     // send the mail
     smtpTransport.sendMail(mailOptions, function(error, response) {
@@ -105,16 +85,46 @@ app.post('/send', (req, res) => {
             console.log(error);
         } else {
             console.log("Message sent: " + response);
-            //res.redirect('/thanks');
         }
 
         smtpTransport.close(); // shut down the connection pool, no more messages
 
     });
-    
-    // Show thank you page
-    res.redirect('../thanks');
 
+    // EMAIL MARKETING 
+    if (marketing === "true") {
+
+        // ADD TO MAILCHIMP
+        request
+            .post('https://' + mailchimpInstance + '.api.mailchimp.com/3.0/lists/' + listUniqueId + '/members/')
+            .set('Content-Type', 'application/json;charset=utf-8')
+            .set('Authorization', 'Basic ' + new Buffer('any:' + mailchimpApiKey ).toString('base64'))
+            .send({
+            'email_address': req.body.email,
+            'status': 'subscribed',
+            'merge_fields': {
+                'FNAME': req.body.firstname,
+                'LNAME': req.body.lastname
+            }
+            })
+            .end(function(err, response) {
+                if (response.status < 300 || (response.status === 400 && response.body.title === "Member Exists")) {
+                console.log('Signed Up!');
+                } else {
+                console.log('Sign Up Failed :(');
+                }
+            });
+
+            // Show thank you page
+            res.redirect('../thanks');
+
+        } else {
+
+            // Show thank you page
+            res.redirect('../thanks');
+
+
+        }
 });
 
 app.listen(process.env.PORT || 5000, () => console.log('Server started...'));

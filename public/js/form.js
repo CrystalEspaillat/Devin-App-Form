@@ -1,5 +1,22 @@
 $(document).ready(() => {
 
+let marketingPref = true;
+
+// Show marketing message change on check.
+$("#marketing").change(() => {
+  if ($('input[name="marketing"]:checked').length > 0) {
+
+    $("#marketing-msg").text("Keep me updated on promos.");
+    marketingPref = true;
+    console.log(marketingPref);
+
+  } else {
+    $("#marketing-msg").text("I don't want good deals.");
+    marketingPref = false;
+    console.log(marketingPref);
+  }
+});
+
   //On submit 
   $("form").parsley().on("form:submit", () => {
 
@@ -8,20 +25,22 @@ $(document).ready(() => {
     // prevent page from refreshing
     event.preventDefault();
 
-    // SHow alerts when inputs are wrong
+    // Show alerts when inputs are wrong
     $(".alert").show();
 
     // Collect form values
     let firstName = $("#first-name").val().trim();
     let lastName = $("#last-name").val().trim();
     let email = $("#email").val().trim();
-    let plan =  $('input[name="plan"]:checked').val();
-    let struggle = $('textarea#struggle').val();
+    let plan =  $("input[name='plan']:checked").val();
+    let struggle = $("textarea#struggle").val();
+    let marketing = marketingPref;
 
     // Test
       console.log("name is: " + firstName + " " + lastName);
       console.log("email is: " + email);
       console.log("plan is: " + plan);
+      console.log("marketing: " + marketing);
       console.log("struggle is: " + struggle);
 
       let newApplication = {
@@ -29,6 +48,7 @@ $(document).ready(() => {
           lastname: lastName,
           email: email,
           plan: plan,
+          marketing: marketing,
           struggle: struggle
       }
 
