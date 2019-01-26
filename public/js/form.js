@@ -1,18 +1,18 @@
 $(document).ready(() => {
 
-let marketingPref = true;
+let marketingPref = "yes";
 
 // Show marketing message change on check.
 $("#marketing").change(() => {
   if ($('input[name="marketing"]:checked').length > 0) {
 
     $("#marketing-msg").text("Keep me updated on promos.");
-    marketingPref = true;
+    marketingPref = "yes";
     console.log(marketingPref);
 
   } else {
     $("#marketing-msg").text("I don't want good deals.");
-    marketingPref = false;
+    marketingPref = "no";
     console.log(marketingPref);
   }
 });
