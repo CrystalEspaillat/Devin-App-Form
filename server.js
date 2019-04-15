@@ -80,7 +80,7 @@ app.post('/send', (req, res) => {
     };
 
     // send the mail
-    smtpTransport.sendMail(mailOptions, function(error, response) {
+    smtpTransport.sendMail(mailOptions, (error, response) => {
         if (error) {
             console.log(error);
         } else {
